@@ -67,3 +67,6 @@ export default tseslint.config([
   },
 ])
 ```
+
+Базова урла з .env
+const baseUrls = import.meta.env.VITE_API_BASE_URL 
