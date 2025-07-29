@@ -1,0 +1,15 @@
+.app-header {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between; /* Розносить ліву і праву частини по краях */
+    align-items: center; /* Вирівнює все по вертикалі */
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Проміжок між елементами */
+}
