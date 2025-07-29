@@ -3,7 +3,7 @@ import './LoginComponent.css'
 const LoginComponent = () => {
     return (
         <div>
-            Login
+            <button className={'login-button'}>Log In</button>
         </div>
     );
 };

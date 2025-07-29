@@ -2,9 +2,9 @@ import './SearchComponent.css'
 
 const SearchComponent = () => {
     return (
-        <div>
-            Search
-        </div>
+        <form>
+            <input type={'text'} placeholder={'Search...'} className={'search-input'}/>
+        </form>
     );
 };
 

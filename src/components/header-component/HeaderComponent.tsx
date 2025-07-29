@@ -7,13 +7,17 @@ import LoginComponent from "./login-component/LoginComponent.tsx";
 const HeaderComponent = () => {
     return (
         <header className="app-header">
-            <div className="header-left">
-                <LogoComponent/>
-                <MenuComponent/>
-            </div>
-            <div className="header-right">
-                <SearchComponent/>
-                <LoginComponent/>
+            <div className="header-container">
+                <div className="header-left">
+                    <LogoComponent />
+                </div>
+                <div className="header-center">
+                    <MenuComponent />
+                </div>
+                <div className="header-right">
+                    <SearchComponent />
+                    <LoginComponent />
+                </div>
             </div>
         </header>
     );
