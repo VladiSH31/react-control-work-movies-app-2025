@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.movies-grid {
+    @apply grid gap-6 px-6;
+    /*
+     * grid: вмикає CSS Grid.
+     * gap-6: встановлює проміжок між картками.
+     * px-6 - додає бокові відступи
+     */
+
+    /* Налаштовуємо кількість колонок для різних розмірів екрану (адаптивність) */
+    @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+    /*
+     * grid-cols-1: 1 колонка на маленьких екранах (мобільні).
+     * sm:grid-cols-2: 2 колонки на екранах від 640px.
+     * md:grid-cols-3: 3 колонки на екранах від 768px.
+     * lg:grid-cols-4: 4 колонки на екранах від 1024px.
+     * xl:grid-cols-5: 5 колонок на екранах від 1280px.
+     */
+}

@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.movie-card {
+    @apply bg-gray-700 rounded-lg overflow-hidden shadow-lg transition-transform duration-300;
+    /*
+     * bg-gray-700: темний фон для картки.
+     * rounded-lg: заокруглені кути.
+     * overflow-hidden: обрізає зображення, яке виходить за межі заокруглених кутів.
+     * shadow-lg: додає тінь.
+     * transition-transform duration-300: готуємо для майбутнього ховер-ефекту.
+     */
+    @apply flex flex-col;
+}
+
+.movie-card:hover {
+    @apply transform -translate-y-2; /* При наведенні картка трохи піднімається */
+}
+
+.movie-card img {
+    @apply w-full flex-grow object-cover; /* Зображення завжди займає 100% ширини картки */
+}
+
+.movie-title {
+    @apply text-white font-bold p-4 text-center; /* Стилі для назви фільму */
+}

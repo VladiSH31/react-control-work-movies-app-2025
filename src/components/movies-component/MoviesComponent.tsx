@@ -1,20 +1,24 @@
 import './MoviesComponent.css'
-import {moviesService} from "../../services/global.api.service.ts";
-import {useEffect, useState} from "react";
-import type {IMovie} from "../../models/IMovie.ts";
+import {useEffect} from "react";
 import MovieCardComponent from "../movie-card-component/MovieCardComponent.tsx";
+import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
+import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
+import {movieSliceActions} from "../../redux/store/slices/movieSlice.ts";
 
 const MoviesComponent = () => {
-    const [movies, setMovies] = useState<IMovie[]>([])
+
+
+    const dispatch = useAppDispatch();
+    const {movies} =useAppSelector(({movieSlice}) => movieSlice)
 
     useEffect(() => {
-        moviesService.getAll().then(value => setMovies(value))
-    }, []);
+        dispatch(movieSliceActions.loadMovies())
+    }, [dispatch]);
 
     return (
-        <div>
+        <div className="movies-grid">
             {
-                movies.map(movie => <MovieCardComponent movie={movie}/>)
+                movies.map((movie) => <MovieCardComponent key={movie.id} movie={movie}/>)
             }
         </div>
     );
