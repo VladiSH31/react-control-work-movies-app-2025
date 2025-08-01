@@ -14,8 +14,9 @@ const axiosInstance = axios.create({
 // Movies Service
 
 export const moviesService = {
-    getAll: async ():Promise<IMovie[]> => {
-        const {data} = await axiosInstance.get<IResponseMoviesModel<IMovie>>('/discover/movie');
+    getMovies: async (genreId?: number | null):Promise<IMovie[]> => {
+        const params = genreId ? {with_genres: genreId} : {}
+        const {data} = await axiosInstance.get<IResponseMoviesModel<IMovie>>('/discover/movie', {params});
         return data.results
     }
 }

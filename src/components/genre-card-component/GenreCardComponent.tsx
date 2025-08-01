@@ -3,13 +3,14 @@ import type {FC} from "react";
 import type {IGenre} from "../../models/IGenre.ts";
 
 type GenrePropsType = {
-    genre: IGenre
+    genre: IGenre,
+    onClick: (id: number) => void;
 }
 
-const GenreCardComponent:FC<GenrePropsType> = ({genre}) => {
+const GenreCardComponent:FC<GenrePropsType> = ({genre, onClick}) => {
     return (
         <div>
-            <button className="genre-card">{genre.name}</button>
+            <button className="genre-card" onClick={() => onClick(genre.id)}>{genre.name}</button>
         </div>
     );
 };
