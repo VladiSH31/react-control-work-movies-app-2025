@@ -6,7 +6,10 @@ const MainLayout = () => {
     return (
         <div>
             <HeaderComponent/>
-            <Outlet/>
+            <main className={"p-6"}>
+                <Outlet/>
+            </main>
+
         </div>
     );
 };

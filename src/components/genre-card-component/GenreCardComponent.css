@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+.genre-card {
+    @apply bg-gray-700 rounded-lg shadow-md cursor-pointer;
+    @apply flex items-center justify-center; /* Центруємо текст по горизонталі і вертикалі */
+    @apply text-white font-semibold text-center p-4; /* Стилі для тексту */
+
+    /* Розміри і пропорції */
+    @apply w-32 h-32; /* Робимо картку квадратною */
+
+    /* Анімація */
+    @apply transition-all duration-300 ease-in-out;
+}
+
+.genre-card:hover {
+    @apply bg-gray-600; /* Трохи світліший фон при наведенні */
+    transform: translateY(-4px) scale(1.05); /* Піднімаємо і трохи збільшуємо */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Більш виражена тінь */
+}
+
+.genre-card:active {
+    /* Ефект при натисканні */
+    transform: translateY(-2px) scale(1.02);
+}

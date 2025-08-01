@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.genres-section {
+    @apply mb-12; /* Додаємо відступ знизу, щоб розділити секції */
+}
+
+.genres-title {
+    color: var(--color-accent); /* Використовуємо нашу CSS-змінну! */
+    @apply text-2xl font-bold mb-6 border-l-4 pl-4;
+    border-color: var(--color-accent); /* Лінія зліва теж буде нашого кольору */
+}
+
+.genres-container {
+    @apply flex flex-wrap gap-4; /* Використовуємо flex-wrap і gap для гарної сітки */
+}

@@ -1,20 +1,12 @@
 import './GenrePage.css'
-import {useEffect, useState} from "react";
-import type {IGenre} from "../../models/IGenre.ts";
-import {genreService} from "../../services/global.api.service.ts";
+import GenresComponent from "../../components/genres-component/GenresComponent.tsx";
 
 const GenrePage = () => {
-    const [genres, setGenres] = useState<IGenre[]>([])
-    useEffect(() => {
-        genreService.getMoviesGenre().then(value => setGenres(value))
-    }, []);
+
 
     return (
         <div>
-            Genre Page
-            {
-                genres.map(genre => <div>{genre.name} {genre.id}</div>)
-            }
+            <GenresComponent/>
         </div>
     );
 };
