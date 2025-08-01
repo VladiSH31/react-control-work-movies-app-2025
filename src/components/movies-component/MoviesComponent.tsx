@@ -4,23 +4,39 @@ import MovieCardComponent from "../movie-card-component/MovieCardComponent.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {movieSliceActions} from "../../redux/store/slices/movieSlice.ts";
+import {genreSliceAction} from "../../redux/store/slices/genreSlice.ts";
 
 const MoviesComponent = () => {
 
 
     const dispatch = useAppDispatch();
-    const {movies} =useAppSelector(({movieSlice}) => movieSlice)
+    const {movies, selectedGenreId} =useAppSelector(({movieSlice}) => movieSlice)
+    const {moviesGenre} =useAppSelector(state => state.genreSlice)
 
     useEffect(() => {
-        dispatch(movieSliceActions.loadMovies())
-    }, [dispatch]);
+        dispatch(movieSliceActions.loadMovies());
+
+        if (!moviesGenre.length) {
+            dispatch(genreSliceAction.loadMovieGenre())
+        }
+
+    }, [dispatch, moviesGenre.length]);
+
+    const selectedGenre = moviesGenre.find(genre => genre.id === selectedGenreId)
+
+    const pageTitle = selectedGenre ? `Showing results for: ${selectedGenre.name}`
+        : "All Movies";
 
     return (
-        <div className="movies-grid">
-            {
-                movies.map((movie) => <MovieCardComponent key={movie.id} movie={movie}/>)
-            }
+        <div>
+            <h2 className="movies-page-title">{pageTitle}</h2>
+            <div className="movies-grid">
+                {
+                    movies.map((movie) => <MovieCardComponent key={movie.id} movie={movie}/>)
+                }
+            </div>
         </div>
+
     );
 };
 

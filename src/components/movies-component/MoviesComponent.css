@@ -18,3 +18,8 @@
      * xl:grid-cols-5: 5 колонок на екранах від 1280px.
      */
 }
+
+.movies-page-title {
+    color: var(--color-accent); /* Використовуємо наш фірмовий колір */
+    @apply text-3xl font-bold mb-8 text-center;
+}
