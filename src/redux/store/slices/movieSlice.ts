@@ -5,10 +5,12 @@ import type {RootState} from "../store.tsx";
 
 type MovieSliceType = {
     movies: IMovie[],
-    selectedGenreId: number | null
+    selectedGenreId: number | null,
+    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    error: string | null;
 }
 
-const initialState: MovieSliceType = {movies: [], selectedGenreId: null};
+const initialState: MovieSliceType = {movies: [], selectedGenreId: null,status: 'idle', error: null,};
 
 const loadMovies = createAsyncThunk(
     'movieSlice/loadMovies',
@@ -35,12 +37,17 @@ export const movieSlice = createSlice({
         }
     },
     extraReducers: builder => builder
+        .addCase(loadMovies.pending, (state) => {
+            state.status = 'loading'; // Встановлюємо статус "завантаження"
+            state.error = null;
+        })
         .addCase(loadMovies.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
+            state.status = 'succeeded';
             state.movies = action.payload;
         })
         .addCase(loadMovies.rejected, (state, action) => {
-            console.log(state);
-            console.log(action)
+            state.status = 'failed';
+            state.error = action.error.message || 'Something went wrong';
         })
 })
 

@@ -10,7 +10,7 @@ const MoviesComponent = () => {
 
 
     const dispatch = useAppDispatch();
-    const {movies, selectedGenreId} =useAppSelector(({movieSlice}) => movieSlice)
+    const {movies, selectedGenreId, status, error} =useAppSelector(({movieSlice}) => movieSlice)
     const {moviesGenre} =useAppSelector(state => state.genreSlice)
 
     useEffect(() => {
@@ -26,6 +26,18 @@ const MoviesComponent = () => {
 
     const pageTitle = selectedGenre ? `Showing results for: ${selectedGenre.name}`
         : "All Movies";
+
+    if (status === 'loading') {
+        return (
+            <div className="flex justify-center items-center h-[50vh]">
+                <div className="w-12 h-12 border-4 border-teal-400 border-solid border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
+    if (status === 'failed') {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div>
