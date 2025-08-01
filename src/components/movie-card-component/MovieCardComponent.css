@@ -23,3 +23,9 @@
 .movie-title {
     @apply text-white font-bold p-4 text-center; /* Стилі для назви фільму */
 }
+
+.movie-card-link {
+    text-decoration: none; /* Прибираємо підкреслення у посилання */
+    color: inherit; /* Посилання успадковує колір тексту від батька */
+    display: block; /* Дозволяє посиланню займати весь простір картки */
+}

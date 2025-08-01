@@ -2,6 +2,7 @@ import axios from 'axios';
 import type {IMovie} from "../models/IMovie.ts";
 import type {IResponseMoviesModel} from "../models/IResponseMoviesModel.ts";
 import type {IGenre} from "../models/IGenre.ts";
+import type {IMovieDetails} from "../models/IMovieDetails/IMovieDetails.ts";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -18,6 +19,10 @@ export const moviesService = {
         const params = genreId ? {with_genres: genreId} : {}
         const {data} = await axiosInstance.get<IResponseMoviesModel<IMovie>>('/discover/movie', {params});
         return data.results
+    },
+    getById: async (id: string): Promise<IMovieDetails> => {
+        const movie = await axiosInstance.get<IMovieDetails>('/movie/'+id);
+        return movie.data
     }
 }
 
