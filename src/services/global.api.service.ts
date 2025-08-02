@@ -15,10 +15,16 @@ const axiosInstance = axios.create({
 // Movies Service
 
 export const moviesService = {
-    getMovies: async (genreId?: number | null):Promise<IMovie[]> => {
-        const params = genreId ? {with_genres: genreId} : {}
+    getMovies: async (page: number, genreId?: number | null):Promise<IResponseMoviesModel<IMovie>> => {
+        // const params = genreId ? {with_genres: genreId} : {}
+
+        const params: {with_genres?: number, page: number} = { page }
+
+        if (genreId) {
+            params.with_genres = genreId;
+        }
         const {data} = await axiosInstance.get<IResponseMoviesModel<IMovie>>('/discover/movie', {params});
-        return data.results
+        return data
     },
     getById: async (id: string): Promise<IMovieDetails> => {
         const movie = await axiosInstance.get<IMovieDetails>('/movie/'+id);

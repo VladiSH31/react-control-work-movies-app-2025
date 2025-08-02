@@ -1,31 +1,38 @@
 @import "tailwindcss";
 
+.movie-card-link {
+    @apply no-underline text-inherit block h-full;
+    /* h-full важливий, щоб посилання заповнювало всю висоту комірки гріда */
+}
+
 .movie-card {
-    @apply bg-gray-700 rounded-lg overflow-hidden shadow-lg transition-transform duration-300;
-    /*
-     * bg-gray-700: темний фон для картки.
-     * rounded-lg: заокруглені кути.
-     * overflow-hidden: обрізає зображення, яке виходить за межі заокруглених кутів.
-     * shadow-lg: додає тінь.
-     * transition-transform duration-300: готуємо для майбутнього ховер-ефекту.
-     */
-    @apply flex flex-col;
+    @apply bg-gray-800 rounded-lg overflow-hidden shadow-lg;
+    @apply transition-transform duration-300;
+    @apply flex flex-col h-full; /* Вмикаємо flex і змушуємо картку заповнювати висоту */
 }
 
 .movie-card:hover {
-    @apply transform -translate-y-2; /* При наведенні картка трохи піднімається */
+    @apply transform -translate-y-2; /* Ваш ефект при наведенні */
 }
 
-.movie-card img {
-    @apply w-full flex-grow object-cover; /* Зображення завжди займає 100% ширини картки */
+/* КЛЮЧОВЕ ВИПРАВЛЕННЯ */
+.movie-title-container {
+    @apply p-4 h-24 flex items-center justify-center text-center;
+    /*
+     * h-24: Задає фіксовану висоту для блоку з назвою. Це найважливіша частина.
+     * flex items-center...: Центрує текст всередині цього блоку.
+     */
 }
 
 .movie-title {
-    @apply text-white font-bold p-4 text-center; /* Стилі для назви фільму */
+    @apply text-white font-bold; /* Ваші стилі для тексту */
 }
 
-.movie-card-link {
-    text-decoration: none; /* Прибираємо підкреслення у посилання */
-    color: inherit; /* Посилання успадковує колір тексту від батька */
-    display: block; /* Дозволяє посиланню займати весь простір картки */
+.movie-card img {
+    @apply w-full object-cover flex-grow;
+    /*
+     * flex-grow: Змушує зображення розтягуватися і заповнювати
+     * весь ВІЛЬНИЙ простір, що залишився після заголовка.
+     * object-cover: Запобігає спотворенню зображення.
+     */
 }

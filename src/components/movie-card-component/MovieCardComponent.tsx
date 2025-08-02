@@ -13,7 +13,10 @@ const MovieCardComponent: FC<MoviePropsType> = ({movie}) => {
     return (
         <Link to={`/movie/${movie.id}`} className="movie-card-link">
             <div className="movie-card">
-                <h4 className="movie-title">{movie.title}</h4>
+                <div className="movie-title-container">
+                    <h2 className="movie-title">{movie.title}</h2>
+                </div>
+
                 <img src={imageUrl + movie.poster_path} alt={movie.title}/>
             </div>
         </Link>

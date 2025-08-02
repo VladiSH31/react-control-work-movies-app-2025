@@ -1,5 +1,5 @@
 import './MenuComponent.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import {movieSliceActions} from "../../../redux/store/slices/movieSlice.ts";
 import {useAppDispatch} from "../../../redux/hooks/useAppDispatch.tsx";
 
@@ -11,9 +11,13 @@ const MenuComponent = () => {
 
     const dispatch = useAppDispatch()
 
+    const [query] =useSearchParams();
+
    const handleMoviesLinkClick = () => {
+       const page =query.get('page') || '1';
+
        dispatch(movieSliceActions.setSelectedGenreId(null));
-       dispatch(movieSliceActions.loadMovies())
+       dispatch(movieSliceActions.loadMovies(Number(page)))
    }
 
     return (

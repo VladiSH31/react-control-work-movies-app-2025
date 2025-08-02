@@ -5,6 +5,7 @@ import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {movieSliceActions} from "../../redux/store/slices/movieSlice.ts";
 import {genreSliceAction} from "../../redux/store/slices/genreSlice.ts";
+import {useSearchParams} from "react-router-dom";
 
 const MoviesComponent = () => {
 
@@ -13,14 +14,19 @@ const MoviesComponent = () => {
     const {movies, selectedGenreId, status, error} =useAppSelector(({movieSlice}) => movieSlice)
     const {moviesGenre} =useAppSelector(state => state.genreSlice)
 
+
+    const [query] =useSearchParams()
+
     useEffect(() => {
-        dispatch(movieSliceActions.loadMovies());
+        const page = query.get('page') || '1';
+
+        dispatch(movieSliceActions.loadMovies(Number(page)));
 
         if (!moviesGenre.length) {
             dispatch(genreSliceAction.loadMovieGenre())
         }
 
-    }, [dispatch, moviesGenre.length]);
+    }, [query, dispatch, moviesGenre.length]);
 
     const selectedGenre = moviesGenre.find(genre => genre.id === selectedGenreId)
 
