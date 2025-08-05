@@ -5,6 +5,7 @@ import MoviesPage from "../pages/movies-page/MoviesPage.tsx";
 import TvShowsPage from "../pages/tv-shows-page/TvShowsPage.tsx";
 import GenrePage from "../pages/genre-page/GenrePage.tsx";
 import SingleMoviePage from "../pages/single-movie-page/SingleMoviePage.tsx";
+import SearchPage from "../pages/search-page/SearchPage.tsx";
 
 export const router = createBrowserRouter([
     {path: '/', element:<MainLayout/>, children: [
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
             {path: 'movies', element: <MoviesPage/>},
             {path: 'movie/:id', element: <SingleMoviePage/>},
             {path: 'tvshows', element: <TvShowsPage/>},
-            {path: 'genre', element: <GenrePage/>}
+            {path: 'genre', element: <GenrePage/>},
+            {path: 'search', element: <SearchPage/>}
         ]}
 ])

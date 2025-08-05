@@ -3,12 +3,22 @@ import type {IMovie} from "../../models/IMovie.ts";
 import type {FC} from "react";
 import {Link} from "react-router-dom";
 
+
 type MoviePropsType = {
     movie: IMovie
 }
 
 const MovieCardComponent: FC<MoviePropsType> = ({movie}) => {
-    const imageUrl = import.meta.env.VITE_API_IMAGE_BASE_URL
+
+
+    let imageUrl;
+
+    if (movie.poster_path) {
+        imageUrl = import.meta.env.VITE_API_IMAGE_BASE_URL + movie.poster_path;
+    } else {
+        imageUrl = 'https://placehold.co/500x750/2d3748/e2e8f0?text=No+Image'
+    }
+
 
     return (
         <Link to={`/movie/${movie.id}`} className="movie-card-link">
@@ -17,7 +27,7 @@ const MovieCardComponent: FC<MoviePropsType> = ({movie}) => {
                     <h2 className="movie-title">{movie.title}</h2>
                 </div>
 
-                <img src={imageUrl + movie.poster_path} alt={movie.title}/>
+                <img src={imageUrl} alt={movie.title}/>
             </div>
         </Link>
 

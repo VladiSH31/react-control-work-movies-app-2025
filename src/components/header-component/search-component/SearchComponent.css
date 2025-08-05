@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
 .search-input {
-    @apply bg-gray-700 rounded-full px-4 py-1 text-white;
+    @apply px-4 py-2 rounded-md bg-gray-700 text-white;
+    @apply transition-shadow duration-200; /* Додамо плавний перехід для фокусу */
+}
+
+.search-input:focus {
+    @apply outline-none ring-2 ring-teal-400; /* Стилі при фокусі */
 }

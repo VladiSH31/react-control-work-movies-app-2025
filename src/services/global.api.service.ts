@@ -15,10 +15,10 @@ const axiosInstance = axios.create({
 // Movies Service
 
 export const moviesService = {
-    getMovies: async (page: number, genreId?: number | null):Promise<IResponseMoviesModel<IMovie>> => {
+    getMovies: async (page: number, genreId?: number | null): Promise<IResponseMoviesModel<IMovie>> => {
         // const params = genreId ? {with_genres: genreId} : {}
 
-        const params: {with_genres?: number, page: number} = { page }
+        const params: { with_genres?: number, page: number } = {page}
 
         if (genreId) {
             params.with_genres = genreId;
@@ -27,8 +27,16 @@ export const moviesService = {
         return data
     },
     getById: async (id: string): Promise<IMovieDetails> => {
-        const movie = await axiosInstance.get<IMovieDetails>('/movie/'+id);
+        const movie = await axiosInstance.get<IMovieDetails>('/movie/' + id);
         return movie.data
+    },
+    getSearchMovie: async (query: string, page: number) => {
+       return await axiosInstance.get('/search/movie', {
+           params: {
+               query,
+               page
+           }
+       })
     }
 }
 
@@ -37,12 +45,12 @@ export const moviesService = {
 // Genre Service
 
 export const genreService = {
-    getMoviesGenre: async ():Promise<IGenre[]> => {
-       const {data}= await axiosInstance.get('/genre/movie/list');
-       return data.genres
+    getMoviesGenre: async (): Promise<IGenre[]> => {
+        const {data} = await axiosInstance.get('/genre/movie/list');
+        return data.genres
     },
-    getTvShowsGenre: async ():Promise<IGenre[]> => {
-        const {data}= await axiosInstance.get('/genre/tv/list');
+    getTvShowsGenre: async (): Promise<IGenre[]> => {
+        const {data} = await axiosInstance.get('/genre/tv/list');
         return data.genres
     }
 }

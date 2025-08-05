@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+.spinner-container {
+    @apply flex justify-center items-center h-[50vh];
+}
+
+.spinner {
+    @apply w-12 h-12 border-4 border-teal-400 border-solid border-t-transparent rounded-full animate-spin;
+}
+
+.status-error {
+    @apply text-center text-white text-2xl mt-10;
+}
+
+/* src/pages/search-page/SearchPage.css */
+
+.search-page-container {
+    @apply p-8;
+}
+
+.search-page-title {
+    @apply text-3xl text-white mb-8;
+}
+
+.search-query-highlight {
+    @apply font-bold text-teal-400;
+}
+
+.search-results-grid {
+    /* Зберігаємо всю адаптивну магію Tailwind */
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8;
+}
+
+.no-results-message {
+    @apply text-center text-white text-2xl mt-10;
+}
