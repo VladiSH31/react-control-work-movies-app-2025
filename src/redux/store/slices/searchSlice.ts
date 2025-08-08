@@ -7,14 +7,16 @@ type searchSliceType = {
     searchMovieResult: IMovie[]
     query: string,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
-    error: string | null
+    error: string | null,
+    totalPages: number
 }
 
 const initialState: searchSliceType = {
     searchMovieResult: [],
     query: '',
     status: 'idle',
-    error: null
+    error: null,
+    totalPages: 1
 };
 
 export const searchMovie = createAsyncThunk<IResponseMoviesModel<IMovie>, { query: string, page: number }>(
@@ -44,7 +46,8 @@ export const searchSlice = createSlice({
         })
         .addCase(searchMovie.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.searchMovieResult = action.payload.results
+            state.searchMovieResult = action.payload.results;
+            state.totalPages = action.payload.total_pages
         })
         .addCase(searchMovie.rejected, (state, action) => {
             state.status = 'failed';

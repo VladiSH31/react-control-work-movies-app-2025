@@ -1,18 +1,20 @@
 import './PaginationComponent.css'
+import type {FC} from "react";
 
-import {useSearchParams} from "react-router-dom";
-import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
+type PaginationPropsType = {
+    totalPages: number,
+    currentPage: number,
+    onPageChange: (page: number) => void
+}
 
-const PaginationComponent = () => {
-    const [, setQuery] = useSearchParams()
-    const {currentPage, totalPages}=useAppSelector(state => state.movieSlice)
+const PaginationComponent:FC<PaginationPropsType> = ({ totalPages, currentPage, onPageChange}) => {
 
     const handelOnClickPreviousPage = () => {
-        setQuery({ page: (currentPage - 1).toString() });
+        onPageChange(currentPage - 1);
     }
 
     const handelOnClickNextPage = () => {
-        setQuery({ page: (currentPage + 1).toString() });
+        onPageChange(currentPage + 1);
     }
 
     if (totalPages <= 1) {

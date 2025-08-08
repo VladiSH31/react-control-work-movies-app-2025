@@ -5,11 +5,12 @@ import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {searchSliceAction} from "../../redux/store/slices/searchSlice.ts";
 import MovieCardComponent from "../../components/movie-card-component/MovieCardComponent.tsx";
+import PaginationComponent from "../../components/pagination-component/PaginationComponent.tsx";
 
 const SearchPage = () => {
     const dispatch = useAppDispatch();
-    const {searchMovieResult, status, error} = useAppSelector(state => state.searchSlice)
-    const [searchParams] = useSearchParams();
+    const {searchMovieResult, status, error, totalPages} = useAppSelector(state => state.searchSlice)
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const query = searchParams.get('query');
     const pg = searchParams.get('page') || '1'
@@ -21,6 +22,10 @@ const SearchPage = () => {
            dispatch(searchSliceAction.searchMovie({query, page}))
         }
     }, [query, page, dispatch]);
+
+    const handlePageChange = (page: number) => {
+      setSearchParams({query: query || '', page: page.toString()})
+    }
 
     if (status === 'loading') {
         return <div className={'spinner-container'}>
@@ -61,6 +66,7 @@ const SearchPage = () => {
         </h1>
 
         {result}
+        <PaginationComponent totalPages={totalPages} currentPage={page} onPageChange={handlePageChange}/>
     </div>
 };
 
