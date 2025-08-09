@@ -19,8 +19,6 @@ const axiosInstance = axios.create({
 
 export const moviesService = {
     getMovies: async (page: number, genreId?: number | null): Promise<IPaginatedResponse<IMovie>> => {
-        // const params = genreId ? {with_genres: genreId} : {}
-
         const params: { with_genres?: number, page: number } = {page}
 
         if (genreId) {
@@ -32,6 +30,18 @@ export const moviesService = {
     getById: async (id: string): Promise<IMovieDetails> => {
         const movie = await axiosInstance.get<IMovieDetails>('/movie/' + id);
         return movie.data
+    },
+    getTrending:async ():Promise<IPaginatedResponse<IMovie>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<IMovie>>('/trending/movie/week');
+        return data;
+    },
+    getPopular:async ():Promise<IPaginatedResponse<IMovie>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<IMovie>>('/movie/popular');
+        return data;
+    },
+    getTopRated:async ():Promise<IPaginatedResponse<IMovie>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<IMovie>>('/movie/top_rated');
+        return data;
     }
 }
 
@@ -50,6 +60,18 @@ export const tvShowsService = {
     getById: async (id: string): Promise<ITvShowDetails> => {
         const tvShow = await axiosInstance.get<ITvShowDetails>('/tv/' + id);
         return tvShow.data
+    },
+    getTrending:async ():Promise<IPaginatedResponse<ITvShow>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<ITvShow>>('/trending/tv/week');
+        return data;
+    },
+    getPopular:async ():Promise<IPaginatedResponse<ITvShow>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<ITvShow>>('/tv/popular');
+        return data;
+    },
+    getTopRated:async ():Promise<IPaginatedResponse<ITvShow>> => {
+        const {data} =await axiosInstance.get<IPaginatedResponse<ITvShow>>('/tv/top_rated');
+        return data;
     }
 }
 // Genre Service
