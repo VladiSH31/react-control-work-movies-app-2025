@@ -6,6 +6,7 @@ import {genreSliceAction} from "../../redux/store/slices/genreSlice.ts";
 import GenreCardComponent from "../genre-card-component/GenreCardComponent.tsx";
 import {useNavigate} from "react-router-dom";
 import {movieSliceActions} from "../../redux/store/slices/movieSlice.ts";
+import {tvShowsSliceActions} from "../../redux/store/slices/tvShowsSlice.ts";
 
 const GenresComponent = () => {
 
@@ -27,8 +28,14 @@ const GenresComponent = () => {
 
     const handleMovieGenreClick = (genreId: number) => {
         dispatch(movieSliceActions.setSelectedGenreId(genreId));
-        dispatch(movieSliceActions.loadMovies())
+        dispatch(movieSliceActions.loadMovies(1))
         navigate('/movies')
+    }
+
+    const handleTvShowsGenreClick = (genreId: number) => {
+        dispatch(tvShowsSliceActions.setSelectedGenreId(genreId));
+        dispatch(tvShowsSliceActions.loadTvShows(1))
+        navigate('/tvshows')
     }
 
     return (
@@ -43,14 +50,14 @@ const GenresComponent = () => {
                 </div>
             </div>
 
-            {/*<div className="genres-section">*/}
-            {/*    <h3 className="genres-title">TV Shows Genres</h3>*/}
-            {/*    <div className="genres-container">*/}
-            {/*        {*/}
-            {/*            tvShowsGenre.map(genre => <GenreCardComponent key={genre.id} genre={genre}/>)*/}
-            {/*        }*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="genres-section">
+                <h3 className="genres-title">TV Shows Genres</h3>
+                <div className="genres-container">
+                    {
+                        tvShowsGenre.map(genre => <GenreCardComponent key={genre.id} genre={genre} onClick={handleTvShowsGenreClick}/>)
+                    }
+                </div>
+            </div>
         </div>
 
     );

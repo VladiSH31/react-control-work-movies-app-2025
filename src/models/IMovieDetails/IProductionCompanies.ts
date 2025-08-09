@@ -1,4 +1,4 @@
-export interface IProduction_companies {
+export interface IProductionCompanies {
     id: number;
     logo_path: string;
     name: string;

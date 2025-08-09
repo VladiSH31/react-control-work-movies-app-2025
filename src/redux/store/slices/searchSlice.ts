@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import type {IMovie} from "../../../models/IMovie.ts";
 import {moviesService} from "../../../services/global.api.service.ts";
-import type {IResponseMoviesModel} from "../../../models/IResponseMoviesModel.ts";
+import type {IPaginatedResponse} from "../../../models/IPaginatedResponse.ts";
 
 type searchSliceType = {
     searchMovieResult: IMovie[]
@@ -19,7 +19,7 @@ const initialState: searchSliceType = {
     totalPages: 1
 };
 
-export const searchMovie = createAsyncThunk<IResponseMoviesModel<IMovie>, { query: string, page: number }>(
+export const searchMovie = createAsyncThunk<IPaginatedResponse<IMovie>, { query: string, page: number }>(
     'searchSlice/searchMovie',
     async ({query, page}, thunkAPI) => {
         try {

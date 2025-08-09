@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import type {IGenre} from "../../../models/IGenre.ts";
+import type {IGenreMovies} from "../../../models/IGenreMovies.ts";
 import {genreService} from "../../../services/global.api.service.ts";
 
 type GenreSliceType = {
-    moviesGenre: IGenre[],
-    tvShowsGenre: IGenre[]
+    moviesGenre: IGenreMovies[],
+    tvShowsGenre: IGenreMovies[]
 }
 
 const initialState: GenreSliceType = {moviesGenre: [], tvShowsGenre: []};
@@ -45,14 +45,14 @@ export const genreSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: builder => builder
-        .addCase(loadMovieGenre.fulfilled, (state, action: PayloadAction<IGenre[]>) => {
+        .addCase(loadMovieGenre.fulfilled, (state, action: PayloadAction<IGenreMovies[]>) => {
             state.moviesGenre = action.payload;
         })
         .addCase(loadMovieGenre.rejected, (state, action) => {
             console.log(state);
             console.log(action);
         })
-        .addCase(loadTvShowGenre.fulfilled, (state, action: PayloadAction<IGenre[]>) => {
+        .addCase(loadTvShowGenre.fulfilled, (state, action: PayloadAction<IGenreMovies[]>) => {
             state.tvShowsGenre = action.payload;
         })
         .addCase(loadTvShowGenre.rejected, (state, action) => {

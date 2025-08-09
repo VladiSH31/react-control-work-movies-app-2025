@@ -1,4 +1,4 @@
-export interface IResponseMoviesModel<T> {
+export interface IPaginatedResponse<T> {
     page: number;
     results: T[];
     total_pages: number;

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import type {IMovie} from "../models/IMovie.ts";
-import type {IResponseMoviesModel} from "../models/IResponseMoviesModel.ts";
-import type {IGenre} from "../models/IGenre.ts";
+import type {IPaginatedResponse} from "../models/IPaginatedResponse.ts";
+import type {IGenreMovies} from "../models/IGenreMovies.ts";
 import type {IMovieDetails} from "../models/IMovieDetails/IMovieDetails.ts";
+import type {ITvShow} from "../models/ITvShow.ts";
+import type {ITvShowDetails} from "../models/ITvShowDetails/ITvShowDetails.ts";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -15,7 +17,7 @@ const axiosInstance = axios.create({
 // Movies Service
 
 export const moviesService = {
-    getMovies: async (page: number, genreId?: number | null): Promise<IResponseMoviesModel<IMovie>> => {
+    getMovies: async (page: number, genreId?: number | null): Promise<IPaginatedResponse<IMovie>> => {
         // const params = genreId ? {with_genres: genreId} : {}
 
         const params: { with_genres?: number, page: number } = {page}
@@ -23,7 +25,7 @@ export const moviesService = {
         if (genreId) {
             params.with_genres = genreId;
         }
-        const {data} = await axiosInstance.get<IResponseMoviesModel<IMovie>>('/discover/movie', {params});
+        const {data} = await axiosInstance.get<IPaginatedResponse<IMovie>>('/discover/movie', {params});
         return data
     },
     getById: async (id: string): Promise<IMovieDetails> => {
@@ -41,15 +43,38 @@ export const moviesService = {
 }
 
 // TV Shows Service
+export const tvShowsService = {
+    getTvShows: async (page: number, genreId?: number | null): Promise<IPaginatedResponse<ITvShow>> => {
 
+        const params: { with_genres?: number, page: number } = {page}
+
+        if (genreId) {
+            params.with_genres = genreId;
+        }
+        const {data} = await axiosInstance.get<IPaginatedResponse<ITvShow>>('/discover/tv', {params});
+        return data
+    },
+    getById: async (id: string): Promise<ITvShowDetails> => {
+        const tvShow = await axiosInstance.get<ITvShowDetails>('/tv/' + id);
+        return tvShow.data
+    },
+    getSearchTvShows: async (query: string, page: number) => {
+        return await axiosInstance.get('/search/tv', {
+            params: {
+                query,
+                page
+            }
+        })
+    }
+}
 // Genre Service
 
 export const genreService = {
-    getMoviesGenre: async (): Promise<IGenre[]> => {
+    getMoviesGenre: async (): Promise<IGenreMovies[]> => {
         const {data} = await axiosInstance.get('/genre/movie/list');
         return data.genres
     },
-    getTvShowsGenre: async (): Promise<IGenre[]> => {
+    getTvShowsGenre: async (): Promise<IGenreMovies[]> => {
         const {data} = await axiosInstance.get('/genre/tv/list');
         return data.genres
     }

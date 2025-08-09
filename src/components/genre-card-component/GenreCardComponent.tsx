@@ -1,9 +1,9 @@
 import './GenreCardComponent.css'
 import type {FC} from "react";
-import type {IGenre} from "../../models/IGenre.ts";
+import type {IGenreMovies} from "../../models/IGenreMovies.ts";
 
 type GenrePropsType = {
-    genre: IGenre,
+    genre: IGenreMovies,
     onClick: (id: number) => void;
 }
 

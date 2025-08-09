@@ -2,7 +2,7 @@ import type {IMovie} from "../../../models/IMovie.ts";
 import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import {moviesService} from "../../../services/global.api.service.ts";
 import type {RootState} from "../store.tsx";
-import type {IResponseMoviesModel} from "../../../models/IResponseMoviesModel.ts";
+import type {IPaginatedResponse} from "../../../models/IPaginatedResponse.ts";
 import type {IMovieDetails} from "../../../models/IMovieDetails/IMovieDetails.ts";
 
 type MovieSliceType = {
@@ -30,7 +30,7 @@ const initialState: MovieSliceType = {
 };
 
 const loadMovies = createAsyncThunk<
-    IResponseMoviesModel<IMovie>, // Тип для успішного результату
+    IPaginatedResponse<IMovie>, // Тип для успішного результату
     number,                      // Тип для вхідного аргументу 'page'
     {
         state: RootState,        // Тип для thunkAPI.getState()
