@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import type {IMovie} from "../../../models/IMovie.ts";
-import {moviesService} from "../../../services/global.api.service.ts";
+import {searchService} from "../../../services/global.api.service.ts";
 import type {IPaginatedResponse} from "../../../models/IPaginatedResponse.ts";
+import type {IMultiSearchResult} from "../../../models/IMultiSearchResult.ts";
 
 type searchSliceType = {
-    searchMovieResult: IMovie[]
+    searchMultiResult: IMultiSearchResult[]
     query: string,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
     error: string | null,
@@ -12,19 +12,18 @@ type searchSliceType = {
 }
 
 const initialState: searchSliceType = {
-    searchMovieResult: [],
+    searchMultiResult: [],
     query: '',
     status: 'idle',
     error: null,
     totalPages: 1
 };
 
-export const searchMovie = createAsyncThunk<IPaginatedResponse<IMovie>, { query: string, page: number }>(
-    'searchSlice/searchMovie',
+export const searchMulti = createAsyncThunk<IPaginatedResponse<IMultiSearchResult>, { query: string, page: number }>(
+    'searchSlice/searchMulti',
     async ({query, page}, thunkAPI) => {
         try {
-            const {data} = await moviesService.getSearchMovie(query, page);
-            return data
+            return await searchService.searchMulti(query, page);
         } catch (e) {
             return thunkAPI.rejectWithValue(e)
         }
@@ -40,20 +39,20 @@ export const searchSlice = createSlice({
         }
     },
     extraReducers: builder => builder
-        .addCase(searchMovie.pending, state => {
+        .addCase(searchMulti.pending, state => {
             state.status = 'loading';
             state.error = null
         })
-        .addCase(searchMovie.fulfilled, (state, action) => {
+        .addCase(searchMulti.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.searchMovieResult = action.payload.results;
+            state.searchMultiResult = action.payload.results;
             state.totalPages = action.payload.total_pages
         })
-        .addCase(searchMovie.rejected, (state, action) => {
+        .addCase(searchMulti.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.payload as string
         })
 })
 export const searchSliceAction = {
-    ...searchSlice.actions, searchMovie
+    ...searchSlice.actions, searchMulti
 }

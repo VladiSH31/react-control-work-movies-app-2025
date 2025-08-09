@@ -5,6 +5,7 @@ import type {IGenreMovies} from "../models/IGenreMovies.ts";
 import type {IMovieDetails} from "../models/IMovieDetails/IMovieDetails.ts";
 import type {ITvShow} from "../models/ITvShow.ts";
 import type {ITvShowDetails} from "../models/ITvShowDetails/ITvShowDetails.ts";
+import type {IMultiSearchResult} from "../models/IMultiSearchResult.ts";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -31,14 +32,6 @@ export const moviesService = {
     getById: async (id: string): Promise<IMovieDetails> => {
         const movie = await axiosInstance.get<IMovieDetails>('/movie/' + id);
         return movie.data
-    },
-    getSearchMovie: async (query: string, page: number) => {
-       return await axiosInstance.get('/search/movie', {
-           params: {
-               query,
-               page
-           }
-       })
     }
 }
 
@@ -57,14 +50,6 @@ export const tvShowsService = {
     getById: async (id: string): Promise<ITvShowDetails> => {
         const tvShow = await axiosInstance.get<ITvShowDetails>('/tv/' + id);
         return tvShow.data
-    },
-    getSearchTvShows: async (query: string, page: number) => {
-        return await axiosInstance.get('/search/tv', {
-            params: {
-                query,
-                page
-            }
-        })
     }
 }
 // Genre Service
@@ -77,5 +62,19 @@ export const genreService = {
     getTvShowsGenre: async (): Promise<IGenreMovies[]> => {
         const {data} = await axiosInstance.get('/genre/tv/list');
         return data.genres
+    }
+}
+
+// Search Service
+
+export const searchService = {
+    searchMulti: async (query: string, page: number):Promise<IPaginatedResponse<IMultiSearchResult>> => {
+        const {data} = await axiosInstance.get<IPaginatedResponse<IMultiSearchResult>>('/search/multi', {
+            params: {
+                query,
+                page
+            }
+        })
+        return data;
     }
 }

@@ -6,10 +6,13 @@ import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {searchSliceAction} from "../../redux/store/slices/searchSlice.ts";
 import MovieCardComponent from "../../components/movie-card-component/MovieCardComponent.tsx";
 import PaginationComponent from "../../components/pagination-component/PaginationComponent.tsx";
+import type {IMovie} from "../../models/IMovie.ts";
+import TvShowsCardComponent from "../../components/tv-shows-card-component/TvShowsCardComponent.tsx";
+import type {ITvShow} from "../../models/ITvShow.ts";
 
 const SearchPage = () => {
     const dispatch = useAppDispatch();
-    const {searchMovieResult, status, error, totalPages} = useAppSelector(state => state.searchSlice)
+    const {searchMultiResult, status, error, totalPages} = useAppSelector(state => state.searchSlice)
     const [searchParams, setSearchParams] = useSearchParams();
 
     const query = searchParams.get('query');
@@ -19,7 +22,7 @@ const SearchPage = () => {
 
     useEffect(() => {
         if (query) {
-           dispatch(searchSliceAction.searchMovie({query, page}))
+           dispatch(searchSliceAction.searchMulti({query, page}))
         }
     }, [query, page, dispatch]);
 
@@ -42,11 +45,18 @@ const SearchPage = () => {
         </div>
     }
  let result;
-    if (searchMovieResult.length > 0) {
+    if (searchMultiResult.length > 0) {
         result = (
             <div className="search-results-grid">
                 {
-                    searchMovieResult.map(movie => <MovieCardComponent key={movie.id} movie={movie}/>)
+                    searchMultiResult.map(item => {
+                        if (item.media_type === 'movie') {
+                           return <MovieCardComponent key={item.id} movie={item as IMovie} />
+                        }
+                        if (item.media_type === 'tv') {
+                            return <TvShowsCardComponent key={item.id} tvShow={item as ITvShow} />
+                        }
+                    })
                 }
             </div>
         )
