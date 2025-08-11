@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+.slide {
+    position: relative;
+    height: 600px; /* Можна задати фіксовану висоту для головного слайдера */
+}
+
+.slideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Аналог object-cover в Tailwind */
+}
+
+.slideContent {
+    position: absolute;
+    inset: 0; /* Аналог inset-0 */
+    background-color: rgba(0, 0, 0, 0.4); /* Аналог bg-black bg-opacity-40 */
+    display: flex;
+    align-items: flex-end; /* Аналог items-end */
+    padding: 2rem; /* Аналог p-8 */
+}
+
+.slideTitle {
+    color: white;
+    font-size: 2.25rem; /* Аналог text-4xl */
+    line-height: 2.5rem;
+    font-weight: 700; /* Аналог font-bold */
+}

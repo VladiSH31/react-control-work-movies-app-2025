@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -7,6 +11,12 @@
 
   --color-accent: #2dd4bf;       /* Це наш Teal-400 */
   --color-accent-hover: #14b8a6; /* Це Teal-500 для ефекту hover */
+
+  /* Перевизначення кольорів Swiper */
+  .swiper {
+    --swiper-theme-color: var(--color-accent); /* Основний колір для стрілок та пагінації */
+    --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5); /* Колір неактивних крапок */
+  }
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
