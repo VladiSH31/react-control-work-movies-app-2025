@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {tvShowsSliceActions} from "../../redux/store/slices/tvShowsSlice.ts";
+import StarsRatingComponent from "../../components/stars-rating-component/StarsRatingComponent.tsx";
 
 const SingleTvShowPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -59,7 +60,10 @@ const SingleTvShowPage = () => {
                 </div>
 
                 <h3 className="details-section-title">Rating</h3>
-                <p>{tvShowDetails.vote_average.toFixed(1)} / 10 (based on {tvShowDetails.vote_count.toLocaleString()} votes)</p>
+                <div className="flex items-center gap-4">
+                    <StarsRatingComponent rating={tvShowDetails.vote_average} />
+                    <p className="m-0">{tvShowDetails.vote_average.toFixed(1)} / 10 ({tvShowDetails.vote_count.toLocaleString()} votes)</p>
+                </div>
 
                 <h3 className="details-section-title">Additional Details</h3>
                 <ul className="details-list">

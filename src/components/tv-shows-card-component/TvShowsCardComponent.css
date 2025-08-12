@@ -17,11 +17,8 @@
 
 /* КЛЮЧОВЕ ВИПРАВЛЕННЯ */
 .tv-shows-title-container {
-    @apply p-4 h-24 flex items-center justify-center text-center;
-    /*
-     * h-24: Задає фіксовану висоту для блоку з назвою. Це найважливіша частина.
-     * flex items-center...: Центрує текст всередині цього блоку.
-     */
+    @apply p-4 flex flex-col items-center justify-center text-center gap-1;
+    min-height: 6rem;
 }
 
 .tv-shows-title {

@@ -2,6 +2,7 @@ import './TvShowsCardComponent.css'
 import type {FC} from "react";
 import {Link} from "react-router-dom";
 import type {ITvShow} from "../../models/ITvShow.ts";
+import StarsRatingComponent from "../stars-rating-component/StarsRatingComponent.tsx";
 
 
 type TvShowPropsType = {
@@ -25,6 +26,7 @@ const TvShowsCardComponent: FC<TvShowPropsType> = ({tvShow}) => {
             <div className="tv-shows-card">
                 <div className="tv-shows-title-container">
                     <h2 className="tv-shows-title">{tvShow.name}</h2>
+                    <StarsRatingComponent rating={tvShow.vote_average} />
                 </div>
 
                 <img src={imageUrl} alt={tvShow.name}/>

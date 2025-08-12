@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {movieSliceActions} from "../../redux/store/slices/movieSlice.ts";
+import StarsRatingComponent from "../../components/stars-rating-component/StarsRatingComponent.tsx";
 
 const SingleMoviePage = () => {
     const { id } = useParams<{ id: string }>();
@@ -59,7 +60,10 @@ const SingleMoviePage = () => {
                 </div>
 
                 <h3 className="details-section-title">Rating</h3>
-                <p>{movieDetails.vote_average.toFixed(1)} / 10 (based on {movieDetails.vote_count.toLocaleString()} votes)</p>
+                <div className="flex items-center gap-4">
+                    <StarsRatingComponent rating={movieDetails.vote_average} />
+                    <p className="m-0">{movieDetails.vote_average.toFixed(1)} / 10 ({movieDetails.vote_count.toLocaleString()} votes)</p>
+                </div>
 
                 <h3 className="details-section-title">Additional Details</h3>
                 <ul className="details-list">

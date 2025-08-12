@@ -2,6 +2,7 @@ import './MovieCardComponent.css'
 import type {IMovie} from "../../models/IMovie.ts";
 import type {FC} from "react";
 import {Link} from "react-router-dom";
+import StarsRatingComponent from "../stars-rating-component/StarsRatingComponent.tsx";
 
 
 type MoviePropsType = {
@@ -25,6 +26,7 @@ const MovieCardComponent: FC<MoviePropsType> = ({movie}) => {
             <div className="movie-card">
                 <div className="movie-title-container">
                     <h2 className="movie-title">{movie.title}</h2>
+                    <StarsRatingComponent rating={movie.vote_average} />
                 </div>
 
                 <img src={imageUrl} alt={movie.title}/>
