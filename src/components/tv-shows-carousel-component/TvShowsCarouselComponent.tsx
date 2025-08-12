@@ -14,7 +14,7 @@ type TvShowsCarouselProps = {
 
 const TvShowsCarouselComponent:FC<TvShowsCarouselProps> = ({title, tvShows}) => {
     return (
-        <div className={styles.carouselContainer}>
+        <div>
             <h2 className={styles.carouselTitle}>{title}</h2>
             <Swiper
                 modules={[Navigation]}

@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-.carouselContainer {
-    margin-bottom: 2rem; /* Відступ знизу від кожної каруселі */
-    padding: 0 2rem; /* Додамо відступи зліва і справа, щоб карусель не прилипала до країв */
-}
-
 .carouselTitle {
-    font-size: 1.5rem; /* 24px */
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: white;
+    @apply text-2xl font-semibold text-white mb-4;
 }

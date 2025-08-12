@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.pageContainer {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.carouselsWrapper {
+    /* Додаємо вертикальні відступи між каруселями та загальні відступи зверху/знизу */
+    @apply space-y-8 md:space-y-12 py-8;
+}
