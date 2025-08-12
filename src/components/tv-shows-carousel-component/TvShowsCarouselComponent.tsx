@@ -37,7 +37,7 @@ const TvShowsCarouselComponent:FC<TvShowsCarouselProps> = ({title, tvShows}) => 
             >
                 {
                     tvShows.map(tvShow => (
-                        <SwiperSlide key={tvShow.id}>
+                        <SwiperSlide key={tvShow.id} className={styles.slide}>
                             {/* Просто використовуємо ваш готовий компонент! */}
                             <TvShowsCardComponent tvShow={tvShow}/>
                         </SwiperSlide>

@@ -37,7 +37,7 @@ const MoviesCarouselComponent:FC<MovieCarouselProps> = ({title, movies}) => {
             >
                 {
                     movies.map(movie => (
-                        <SwiperSlide key={movie.id}>
+                        <SwiperSlide key={movie.id} className={styles.slide}>
                             {/* Просто використовуємо ваш готовий компонент! */}
                             <MovieCardComponent movie={movie}/>
                         </SwiperSlide>
