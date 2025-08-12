@@ -2,7 +2,7 @@ import './HeaderComponent.css'
 import LogoComponent from "./logo-component/LogoComponent.tsx";
 import MenuComponent from "./menu-component/MenuComponent.tsx";
 import SearchComponent from "./search-component/SearchComponent.tsx";
-import LoginComponent from "./login-component/LoginComponent.tsx";
+import UserInfoComponent from "./user-info-component/UserInfoComponent.tsx";
 
 const HeaderComponent = () => {
     return (
@@ -16,7 +16,7 @@ const HeaderComponent = () => {
                 </div>
                 <div className="header-right">
                     <SearchComponent />
-                    <LoginComponent />
+                    <UserInfoComponent />
                 </div>
             </div>
         </header>
