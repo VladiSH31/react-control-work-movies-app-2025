@@ -1,4 +1,4 @@
-export interface IBelongs_to_collection {
+export interface IBelongsToCollection {
     id: number;
     name: string;
     poster_path: string;

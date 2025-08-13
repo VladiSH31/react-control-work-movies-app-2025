@@ -2,9 +2,9 @@
 
 .search-input {
     @apply px-4 py-2 rounded-md bg-gray-700 text-white;
-    @apply transition-shadow duration-200; /* Додамо плавний перехід для фокусу */
+    @apply transition-shadow duration-200;
 }
 
 .search-input:focus {
-    @apply outline-none ring-2 ring-teal-400; /* Стилі при фокусі */
+    @apply outline-none ring-2 ring-teal-400;
 }

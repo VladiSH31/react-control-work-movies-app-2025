@@ -2,34 +2,27 @@
 
 .movie-card-link {
     @apply no-underline text-inherit block h-full;
-    /* h-full важливий, щоб посилання заповнювало всю висоту комірки гріда */
 }
 
 .movie-card {
     @apply bg-gray-800 rounded-lg overflow-hidden shadow-lg;
     @apply transition-transform duration-300;
-    @apply flex flex-col h-full; /* Вмикаємо flex і змушуємо картку заповнювати висоту */
+    @apply flex flex-col h-full;
 }
 
 .movie-card:hover {
-    @apply transform -translate-y-2; /* Ваш ефект при наведенні */
+    @apply transform -translate-y-2;
 }
 
-/* КЛЮЧОВЕ ВИПРАВЛЕННЯ */
 .movie-title-container {
     @apply p-4 flex flex-col items-center justify-center text-center gap-1;
-    min-height: 6rem; /* Аналог h-24, але як мінімальна висота */
+    min-height: 6rem;
 }
 
 .movie-title {
-    @apply text-white font-bold; /* Ваші стилі для тексту */
+    @apply text-white font-bold;
 }
 
 .movie-card img {
     @apply w-full object-cover flex-grow;
-    /*
-     * flex-grow: Змушує зображення розтягуватися і заповнювати
-     * весь ВІЛЬНИЙ простір, що залишився після заголовка.
-     * object-cover: Запобігає спотворенню зображення.
-     */
 }

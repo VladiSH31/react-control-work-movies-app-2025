@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 .logo {
-    color: var(--color-accent); /* Використовуємо нашу змінну */
+    color: var(--color-accent);
     @apply text-xs font-bold whitespace-nowrap;
 }

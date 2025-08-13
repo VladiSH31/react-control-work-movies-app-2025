@@ -12,8 +12,6 @@
     @apply text-center text-white text-2xl mt-10;
 }
 
-/* src/pages/search-page/SearchPage.css */
-
 .search-page-container {
     @apply p-8;
 }
@@ -27,7 +25,6 @@
 }
 
 .search-results-grid {
-    /* Зберігаємо всю адаптивну магію Tailwind */
     @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8;
 }
 

@@ -7,7 +7,6 @@ import type {ISpokenLanguage} from "./ISpokenLanguage.ts";
 import type {ICreatedBy} from "./ICreatedBy.ts";
 import type {IProductionCompanies} from "../IMovieDetails/IProductionCompanies.ts";
 
-
 export interface ITvShowDetails {
   adult: boolean;
   backdrop_path: string;

@@ -19,9 +19,7 @@ const SingleTvShowPage = () => {
     }, [id, dispatch]);
 
     const handleGenreClick = (genreId: number) => {
-        // Встановлюємо обраний жанр у Redux для серіалів
         dispatch(tvShowsSliceActions.setSelectedGenreId(genreId));
-        // Завантажуємо першу сторінку серіалів з цим жанром
         dispatch(tvShowsSliceActions.loadTvShows(1));
     };
 
@@ -64,7 +62,7 @@ const SingleTvShowPage = () => {
                     {tvShowDetails.genres.map(genre => (
                         <Link
                             key={genre.id}
-                            to="/tvshows" // Посилаємося на сторінку списку серіалів
+                            to="/tvshows"
                             className="genre-item"
                             onClick={() => handleGenreClick(genre.id)}
                         >
@@ -82,7 +80,6 @@ const SingleTvShowPage = () => {
                 <h3 className="details-section-title">Additional Details</h3>
                 <ul className="details-list">
                     <li><strong>First Air Date:</strong> {tvShowDetails.first_air_date}</li>
-                    {/* Перевіряємо, чи є дані про тривалість епізоду */}
                     {tvShowDetails.episode_run_time && tvShowDetails.episode_run_time[0] && (
                         <li><strong>Episode Runtime:</strong> {tvShowDetails.episode_run_time[0]} minutes</li>
                     )}

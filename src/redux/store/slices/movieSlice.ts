@@ -30,11 +30,11 @@ const initialState: MovieSliceType = {
 };
 
 const loadMovies = createAsyncThunk<
-    IPaginatedResponse<IMovie>, // Тип для успішного результату
-    number,                      // Тип для вхідного аргументу 'page'
+    IPaginatedResponse<IMovie>,
+    number,
     {
-        state: RootState,        // Тип для thunkAPI.getState()
-        rejectValue: string      // Тип для thunkAPI.rejectWithValue()
+        state: RootState,
+        rejectValue: string
     }
 >(
     'movieSlice/loadMovies',
@@ -73,7 +73,7 @@ export const movieSlice = createSlice({
     },
     extraReducers: builder => builder
         .addCase(loadMovies.pending, (state) => {
-            state.status = 'loading'; // Встановлюємо статус "завантаження"
+            state.status = 'loading';
             state.error = null;
         })
         .addCase(loadMovies.fulfilled, (state, action) => {

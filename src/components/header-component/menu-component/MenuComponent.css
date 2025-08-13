@@ -1,17 +1,14 @@
 @import "tailwindcss";
 
-/* Застосовуємо Flexbox до контейнера <ul> ... */
 nav ul {
     @apply flex items-center space-x-6;
 }
 
-/* Стилі для самого посилання всередині <li> ... */
 nav a {
     @apply text-gray-300 hover:text-white transition-colors duration-200;
 }
 
-/* Окремий клас для активного посилання. */
 nav a.active {
-    color: var(--color-accent); /* Використовуємо нашу змінну */
+    color: var(--color-accent);
     @apply font-bold;
 }

@@ -4,7 +4,6 @@ import {movieSliceActions} from "../../../redux/store/slices/movieSlice.ts";
 import {useAppDispatch} from "../../../redux/hooks/useAppDispatch.tsx";
 
 const MenuComponent = () => {
-    // Функція, яка буде визначати, які класи застосувати
     const getNavLinkClass = ({ isActive }: { isActive: boolean }): string => {
         return isActive ? 'active' : ''; // Якщо посилання активне, повертаємо клас 'active'
     };

@@ -1,13 +1,13 @@
-import type {IBelongs_to_collection} from "./IBelongs_to_collection.ts";
+import type {IBelongsToCollection} from "./IBelongsToCollection.ts";
 import type {IGenreMovies} from "../IGenreMovies.ts";
 import type {IProductionCompanies} from "./IProductionCompanies.ts";
 import type {IProductionCountries} from "./IProductionCountries.ts";
-import type {ISpoken_language} from "./ISpoken_language.ts";
+import type {ISpokenLanguage} from "./ISpokenLanguage.ts";
 
 export interface IMovieDetails {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: IBelongs_to_collection;
+  belongs_to_collection: IBelongsToCollection;
   budget: number;
   genres: IGenreMovies[];
   homepage: string;
@@ -24,7 +24,7 @@ export interface IMovieDetails {
   release_date: string;
   revenue: number;
   runtime: number;
-  spoken_languages: ISpoken_language[];
+  spoken_languages: ISpokenLanguage[];
   status: string;
   tagline: string;
   title: string;

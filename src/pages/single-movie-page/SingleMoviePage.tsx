@@ -19,9 +19,7 @@ const SingleMoviePage = () => {
     }, [id, dispatch]);
 
     const handleGenreClick = (genreId: number) => {
-        // Встановлюємо обраний жанр у Redux
         dispatch(movieSliceActions.setSelectedGenreId(genreId));
-        // Можна також одразу скинути сторінку на першу, хоча це не обов'язково
         dispatch(movieSliceActions.loadMovies(1));
     };
 

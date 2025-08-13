@@ -30,11 +30,11 @@ const initialState: tvShowsSliceType = {
 };
 
 const loadTvShows = createAsyncThunk<
-    IPaginatedResponse<ITvShow>, // Тип для успішного результату
-    number,                      // Тип для вхідного аргументу 'page'
+    IPaginatedResponse<ITvShow>,
+    number,
     {
-        state: RootState,        // Тип для thunkAPI.getState()
-        rejectValue: string      // Тип для thunkAPI.rejectWithValue()
+        state: RootState,
+        rejectValue: string
     }
 >(
     'tvShowsSlice/loadTvShows',
@@ -73,7 +73,7 @@ export const tvShowsSlice = createSlice({
     },
     extraReducers: builder => builder
         .addCase(loadTvShows.pending, (state) => {
-            state.status = 'loading'; // Встановлюємо статус "завантаження"
+            state.status = 'loading';
             state.error = null;
         })
         .addCase(loadTvShows.fulfilled, (state, action) => {

@@ -14,12 +14,12 @@ const StarsRatingComponent:FC<StarRatingProps> = ({ rating }) => {
         <div>
             <StarRatings
                 rating={ratingStars}
-                starRatedColor="gold" // Колір заповнених зірок
-                starEmptyColor="grey" // Колір порожніх зірок
-                numberOfStars={5} // Загальна кількість зірок
+                starRatedColor="gold"
+                starEmptyColor="grey"
+                numberOfStars={5}
                 name='rating'
-                starDimension="20px" // Розмір кожної зірки
-                starSpacing="2px" // Відстань між зірками
+                starDimension="20px"
+                starSpacing="2px"
             />
         </div>
     );

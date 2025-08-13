@@ -9,13 +9,12 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --color-accent: #2dd4bf;       /* Це наш Teal-400 */
-  --color-accent-hover: #14b8a6; /* Це Teal-500 для ефекту hover */
+  --color-accent: #2dd4bf;
+  --color-accent-hover: #14b8a6;
 
-  /* Перевизначення кольорів Swiper */
   .swiper {
-    --swiper-theme-color: var(--color-accent); /* Основний колір для стрілок та пагінації */
-    --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5); /* Колір неактивних крапок */
+    --swiper-theme-color: var(--color-accent);
+    --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
   }
 
   color-scheme: light dark;

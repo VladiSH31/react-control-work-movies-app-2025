@@ -3,7 +3,6 @@ import GenresComponent from "../../components/genres-component/GenresComponent.t
 
 const GenrePage = () => {
 
-
     return (
         <div>
             <GenresComponent/>
