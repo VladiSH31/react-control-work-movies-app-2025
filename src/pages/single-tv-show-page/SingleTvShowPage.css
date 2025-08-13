@@ -34,6 +34,13 @@
 
 .genre-item {
     @apply bg-gray-700 px-3 py-1 rounded-full text-sm;
+    /* Додаємо ефект переходу для плавності */
+    @apply transition-colors duration-200;
+}
+
+/* Новий стиль для наведення */
+.genre-item:hover {
+    @apply bg-gray-600; /* Робимо фон трохи світлішим */
 }
 
 .details-list {

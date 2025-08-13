@@ -1,5 +1,5 @@
 import './SingleTvShowPage.css'
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
@@ -17,6 +17,13 @@ const SingleTvShowPage = () => {
         }
 
     }, [id, dispatch]);
+
+    const handleGenreClick = (genreId: number) => {
+        // Встановлюємо обраний жанр у Redux для серіалів
+        dispatch(tvShowsSliceActions.setSelectedGenreId(genreId));
+        // Завантажуємо першу сторінку серіалів з цим жанром
+        dispatch(tvShowsSliceActions.loadTvShows(1));
+    };
 
     if (tvShowDetailsStatus === 'loading') {
         return (
@@ -55,7 +62,14 @@ const SingleTvShowPage = () => {
                 <h3 className="details-section-title">Genres</h3>
                 <div className="genres-list">
                     {tvShowDetails.genres.map(genre => (
-                        <span key={genre.id} className="genre-item">{genre.name}</span>
+                        <Link
+                            key={genre.id}
+                            to="/tvshows" // Посилаємося на сторінку списку серіалів
+                            className="genre-item"
+                            onClick={() => handleGenreClick(genre.id)}
+                        >
+                            {genre.name}
+                        </Link>
                     ))}
                 </div>
 

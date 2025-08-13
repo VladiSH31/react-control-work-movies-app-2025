@@ -1,5 +1,5 @@
 import './SingleMoviePage.css';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
@@ -17,6 +17,13 @@ const SingleMoviePage = () => {
         }
 
     }, [id, dispatch]);
+
+    const handleGenreClick = (genreId: number) => {
+        // Встановлюємо обраний жанр у Redux
+        dispatch(movieSliceActions.setSelectedGenreId(genreId));
+        // Можна також одразу скинути сторінку на першу, хоча це не обов'язково
+        dispatch(movieSliceActions.loadMovies(1));
+    };
 
     if (movieDetailsStatus === 'loading') {
         return (
@@ -55,7 +62,14 @@ const SingleMoviePage = () => {
                 <h3 className="details-section-title">Genres</h3>
                 <div className="genres-list">
                     {movieDetails.genres.map(genre => (
-                        <span key={genre.id} className="genre-item">{genre.name}</span>
+                        <Link
+                            key={genre.id}
+                            to="/movies" // Посилаємося на сторінку списку фільмів
+                            className="genre-item"
+                            onClick={() => handleGenreClick(genre.id)}
+                        >
+                            {genre.name}
+                        </Link>
                     ))}
                 </div>
 
