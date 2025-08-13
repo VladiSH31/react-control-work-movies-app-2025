@@ -2,5 +2,5 @@
 
 .logo {
     color: var(--color-accent); /* Використовуємо нашу змінну */
-    @apply text-xs font-bold;
+    @apply text-xs font-bold whitespace-nowrap;
 }

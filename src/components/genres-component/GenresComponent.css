@@ -6,10 +6,10 @@
 
 .genres-title {
     color: var(--color-accent); /* Використовуємо нашу CSS-змінну! */
-    @apply text-2xl font-bold mb-6 border-l-4 pl-4;
+    @apply text-xl sm:text-2xl font-bold mb-6 border-l-4 pl-4;
     border-color: var(--color-accent); /* Лінія зліва теж буде нашого кольору */
 }
 
 .genres-container {
-    @apply flex flex-wrap gap-4; /* Використовуємо flex-wrap і gap для гарної сітки */
+    @apply flex flex-wrap gap-4 justify-center sm:justify-start; /* Використовуємо flex-wrap і gap для гарної сітки */
 }
