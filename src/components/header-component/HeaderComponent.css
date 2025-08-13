@@ -1,29 +1,51 @@
 @import "tailwindcss";
 
+/* --- Основні стилі хедера --- */
+
 .app-header {
-    @apply w-full bg-gray-800 text-white; /* w-full - це Tailwind для width: 100% */
+    @apply w-full bg-gray-800 text-white;
 }
 
-/* Внутрішній контейнер: ось де вся наша попередня логіка! */
 .header-container {
     @apply container mx-auto flex justify-between items-center px-6 py-4;
-    /*
-     * container: стандартний клас Tailwind, який робить max-width і центрує.
-     * mx-auto: теж для центрування.
-     * flex, justify-between, items-center: наша знайома логіка вирівнювання.
-     * px-6 py-4: наші відступи тепер тут.
-     */
 }
 
-/* Ці стилі залишаються незмінними */
 .header-left {
     @apply flex-1;
 }
 
 .header-center {
-    /* пусто */
+    /* На десктопі тут відображається меню */
 }
 
 .header-right {
     @apply flex-1 flex justify-end items-center gap-4;
+}
+
+
+/* --- Стилі для адаптивного мобільного меню --- */
+
+.hamburger-button {
+    /* Ховаємо кнопку на екранах 'md' і більше */
+    @apply lg:hidden;
+    /* Стилі самої кнопки */
+    @apply p-2 rounded-md text-gray-400;
+    @apply hover:text-white hover:bg-gray-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white;
+}
+
+.mobile-menu-container {
+    /* Позиціонуємо меню, щоб воно випадало поверх контенту */
+    @apply absolute top-full left-0 right-0 bg-gray-800;
+    /* Ховаємо його на екранах 'md' і більше */
+    @apply lg:hidden;
+    /* Візуальні ефекти */
+    @apply shadow-lg p-4;
+    @apply z-50;
+}
+
+/* Припускаємо, що в MenuComponent є <nav><ul>...</ul></nav> */
+/* Це правило змушує посилання в мобільному меню стати вертикальними */
+.mobile-menu-container nav > ul {
+    @apply flex flex-col gap-4 items-center;
 }

@@ -3,7 +3,7 @@
 
 .slide {
     @apply relative;
-    height: 600px; /* Залишаємо фіксовану висоту, бо в Tailwind немає прямого аналога для 600px */
+    height: 600px;
 }
 
 .slideImage {
@@ -11,7 +11,8 @@
 }
 
 .slideContent {
-    @apply absolute inset-0 bg-black bg-opacity-40 flex items-end p-8;
+    /* Ось наше виправлення */
+    @apply absolute inset-0 bg-black/[.40] flex items-end p-8;
 }
 
 .slideTitle {
